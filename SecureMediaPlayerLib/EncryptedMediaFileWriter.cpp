@@ -4,7 +4,7 @@
 using namespace SecureMediaPlayerLib;
 
 EncryptedMediaFileWriter::EncryptedMediaFileWriter(QString mediaFilePath, QString mediaPasswordHash, QObject * parent)
-	: MediaFileWriter(mediaFilePath, parent)
+	: MediaFileWriter(mediaFilePath, parent), m_mediaPasswordHash(nullptr), m_lastKeyIV(nullptr)
 {
 	m_tempBlockBuffer = new unsigned char[MEDIA_BLOCK_SIZE];
 
@@ -53,10 +53,12 @@ void EncryptedMediaFileWriter::setMediaPasswordHash(const QString & mediaPasswor
 {
 	if (!mediaPasswordHash.isEmpty())
 	{
-		m_mediaPasswordHash = new unsigned char[256];
+		if(!m_mediaPasswordHash)
+			m_mediaPasswordHash = new unsigned char[256];
 		memcpy(m_mediaPasswordHash, mediaPasswordHash.toStdString().c_str(), 256);
 
-		m_lastKeyIV = new unsigned char[64];
+		if(!m_lastKeyIV)
+			m_lastKeyIV = new unsigned char[64];
 		memcpy(m_lastKeyIV, m_mediaPasswordHash, 64);
 	}
 }
