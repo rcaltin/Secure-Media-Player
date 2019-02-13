@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="MediaConverter">
+    <file>Resources/browse.png</file>
+  </qresource>
+</RCC>

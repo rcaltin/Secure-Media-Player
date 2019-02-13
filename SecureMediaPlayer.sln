@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MediaPlayer", "MediaPlayer\MediaPlayer.vcxproj", "{5E7D425C-7498-4761-B74B-4AA637FF56B3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE} = {B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MediaConverter", "MediaConverter\MediaConverter.vcxproj", "{4F99ED5B-56B8-48C9-A22B-2B173BE9834D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE} = {B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SecureMediaPlayerLib", "SecureMediaPlayerLib\SecureMediaPlayerLib.vcxproj", "{B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E7D425C-7498-4761-B74B-4AA637FF56B3}.Debug|x64.ActiveCfg = Debug|x64
+		{5E7D425C-7498-4761-B74B-4AA637FF56B3}.Debug|x64.Build.0 = Debug|x64
+		{5E7D425C-7498-4761-B74B-4AA637FF56B3}.Debug|x86.ActiveCfg = Debug|x64
+		{5E7D425C-7498-4761-B74B-4AA637FF56B3}.Release|x64.ActiveCfg = Release|x64
+		{5E7D425C-7498-4761-B74B-4AA637FF56B3}.Release|x64.Build.0 = Release|x64
+		{5E7D425C-7498-4761-B74B-4AA637FF56B3}.Release|x86.ActiveCfg = Release|x64
+		{4F99ED5B-56B8-48C9-A22B-2B173BE9834D}.Debug|x64.ActiveCfg = Debug|x64
+		{4F99ED5B-56B8-48C9-A22B-2B173BE9834D}.Debug|x64.Build.0 = Debug|x64
+		{4F99ED5B-56B8-48C9-A22B-2B173BE9834D}.Debug|x86.ActiveCfg = Debug|x64
+		{4F99ED5B-56B8-48C9-A22B-2B173BE9834D}.Release|x64.ActiveCfg = Release|x64
+		{4F99ED5B-56B8-48C9-A22B-2B173BE9834D}.Release|x64.Build.0 = Release|x64
+		{4F99ED5B-56B8-48C9-A22B-2B173BE9834D}.Release|x86.ActiveCfg = Release|x64
+		{B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE}.Debug|x64.ActiveCfg = Debug|x64
+		{B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE}.Debug|x64.Build.0 = Debug|x64
+		{B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE}.Debug|x86.ActiveCfg = Debug|x64
+		{B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE}.Release|x64.ActiveCfg = Release|x64
+		{B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE}.Release|x64.Build.0 = Release|x64
+		{B552DD2C-BF02-4308-B0D4-9BB6C4E17ACE}.Release|x86.ActiveCfg = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {029116C7-F044-4F80-A7F7-C2DB6E5FBC7E}
+	EndGlobalSection
+EndGlobal

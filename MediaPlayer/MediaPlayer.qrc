@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="/MediaPlayer">
+    <file>Resources/speaker.png</file>
+    <file>Resources/speaker_mute.png</file>
+    <file>Resources/pause.png</file>
+    <file>Resources/play.png</file>
+    <file>Resources/repeat.png</file>
+    <file>Resources/stop.png</file>
+  </qresource>
+</RCC>
