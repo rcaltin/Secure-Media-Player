@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MediaPlayer.ui'
 **
-** Created by: Qt User Interface Compiler version 5.11.2
+** Created by: Qt User Interface Compiler version 5.12.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -53,27 +53,28 @@ public:
     void setupUi(QMainWindow *MediaPlayerClass)
     {
         if (MediaPlayerClass->objectName().isEmpty())
-            MediaPlayerClass->setObjectName(QStringLiteral("MediaPlayerClass"));
+            MediaPlayerClass->setObjectName(QString::fromUtf8("MediaPlayerClass"));
         MediaPlayerClass->resize(822, 714);
         MediaPlayerClass->setAcceptDrops(true);
         centralWidget = new QWidget(MediaPlayerClass);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout_3 = new QVBoxLayout(centralWidget);
         verticalLayout_3->setSpacing(0);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         frame_video = new QFrame(centralWidget);
-        frame_video->setObjectName(QStringLiteral("frame_video"));
+        frame_video->setObjectName(QString::fromUtf8("frame_video"));
         frame_video->setMouseTracking(false);
-        frame_video->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 0);"));
+        frame_video->setAcceptDrops(true);
+        frame_video->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 0, 0);"));
         frame_video->setFrameShape(QFrame::StyledPanel);
         frame_video->setFrameShadow(QFrame::Raised);
 
         verticalLayout_3->addWidget(frame_video);
 
         frame_controls = new QFrame(centralWidget);
-        frame_controls->setObjectName(QStringLiteral("frame_controls"));
+        frame_controls->setObjectName(QString::fromUtf8("frame_controls"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -85,12 +86,12 @@ public:
         verticalLayout_2 = new QVBoxLayout(frame_controls);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         label_media_time = new QLabel(frame_controls);
-        label_media_time->setObjectName(QStringLiteral("label_media_time"));
+        label_media_time->setObjectName(QString::fromUtf8("label_media_time"));
         label_media_time->setMinimumSize(QSize(60, 0));
         label_media_time->setMaximumSize(QSize(60, 16777215));
         label_media_time->setAlignment(Qt::AlignCenter);
@@ -98,7 +99,7 @@ public:
         horizontalLayout_3->addWidget(label_media_time);
 
         horizontalSlider_media_position = new QSlider(frame_controls);
-        horizontalSlider_media_position->setObjectName(QStringLiteral("horizontalSlider_media_position"));
+        horizontalSlider_media_position->setObjectName(QString::fromUtf8("horizontalSlider_media_position"));
         horizontalSlider_media_position->setEnabled(false);
         horizontalSlider_media_position->setMaximum(100000);
         horizontalSlider_media_position->setPageStep(10000);
@@ -107,7 +108,7 @@ public:
         horizontalLayout_3->addWidget(horizontalSlider_media_position);
 
         label_media_time_total = new QLabel(frame_controls);
-        label_media_time_total->setObjectName(QStringLiteral("label_media_time_total"));
+        label_media_time_total->setObjectName(QString::fromUtf8("label_media_time_total"));
         label_media_time_total->setMinimumSize(QSize(60, 0));
         label_media_time_total->setMaximumSize(QSize(60, 16777215));
         label_media_time_total->setAlignment(Qt::AlignCenter);
@@ -119,9 +120,9 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         pushButton_media_play_pause = new QPushButton(frame_controls);
-        pushButton_media_play_pause->setObjectName(QStringLiteral("pushButton_media_play_pause"));
+        pushButton_media_play_pause->setObjectName(QString::fromUtf8("pushButton_media_play_pause"));
         QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -129,40 +130,40 @@ public:
         pushButton_media_play_pause->setSizePolicy(sizePolicy1);
         pushButton_media_play_pause->setMaximumSize(QSize(28, 28));
         QIcon icon;
-        icon.addFile(QStringLiteral(":/MediaPlayer/Resources/play.png"), QSize(), QIcon::Normal, QIcon::On);
+        icon.addFile(QString::fromUtf8(":/MediaPlayer/Resources/play.png"), QSize(), QIcon::Normal, QIcon::On);
         pushButton_media_play_pause->setIcon(icon);
         pushButton_media_play_pause->setIconSize(QSize(48, 48));
 
         horizontalLayout_4->addWidget(pushButton_media_play_pause);
 
         pushButton_media_stop = new QPushButton(frame_controls);
-        pushButton_media_stop->setObjectName(QStringLiteral("pushButton_media_stop"));
+        pushButton_media_stop->setObjectName(QString::fromUtf8("pushButton_media_stop"));
         pushButton_media_stop->setEnabled(false);
         sizePolicy1.setHeightForWidth(pushButton_media_stop->sizePolicy().hasHeightForWidth());
         pushButton_media_stop->setSizePolicy(sizePolicy1);
         pushButton_media_stop->setMaximumSize(QSize(28, 28));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/MediaPlayer/Resources/stop.png"), QSize(), QIcon::Normal, QIcon::On);
+        icon1.addFile(QString::fromUtf8(":/MediaPlayer/Resources/stop.png"), QSize(), QIcon::Normal, QIcon::On);
         pushButton_media_stop->setIcon(icon1);
         pushButton_media_stop->setIconSize(QSize(48, 48));
 
         horizontalLayout_4->addWidget(pushButton_media_stop);
 
         line = new QFrame(frame_controls);
-        line->setObjectName(QStringLiteral("line"));
+        line->setObjectName(QString::fromUtf8("line"));
         line->setFrameShape(QFrame::VLine);
         line->setFrameShadow(QFrame::Sunken);
 
         horizontalLayout_4->addWidget(line);
 
         pushButton_media_repeat = new QPushButton(frame_controls);
-        pushButton_media_repeat->setObjectName(QStringLiteral("pushButton_media_repeat"));
+        pushButton_media_repeat->setObjectName(QString::fromUtf8("pushButton_media_repeat"));
         sizePolicy1.setHeightForWidth(pushButton_media_repeat->sizePolicy().hasHeightForWidth());
         pushButton_media_repeat->setSizePolicy(sizePolicy1);
         pushButton_media_repeat->setMinimumSize(QSize(0, 0));
         pushButton_media_repeat->setMaximumSize(QSize(28, 28));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/MediaPlayer/Resources/repeat.png"), QSize(), QIcon::Normal, QIcon::On);
+        icon2.addFile(QString::fromUtf8(":/MediaPlayer/Resources/repeat.png"), QSize(), QIcon::Normal, QIcon::On);
         pushButton_media_repeat->setIcon(icon2);
         pushButton_media_repeat->setIconSize(QSize(30, 30));
         pushButton_media_repeat->setCheckable(true);
@@ -175,7 +176,7 @@ public:
         horizontalLayout_4->addItem(horizontalSpacer_3);
 
         comboBox_video_track = new QComboBox(frame_controls);
-        comboBox_video_track->setObjectName(QStringLiteral("comboBox_video_track"));
+        comboBox_video_track->setObjectName(QString::fromUtf8("comboBox_video_track"));
         comboBox_video_track->setEnabled(false);
         QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
@@ -187,7 +188,7 @@ public:
         horizontalLayout_4->addWidget(comboBox_video_track);
 
         comboBox_audio_track = new QComboBox(frame_controls);
-        comboBox_audio_track->setObjectName(QStringLiteral("comboBox_audio_track"));
+        comboBox_audio_track->setObjectName(QString::fromUtf8("comboBox_audio_track"));
         comboBox_audio_track->setEnabled(false);
         sizePolicy2.setHeightForWidth(comboBox_audio_track->sizePolicy().hasHeightForWidth());
         comboBox_audio_track->setSizePolicy(sizePolicy2);
@@ -196,7 +197,7 @@ public:
         horizontalLayout_4->addWidget(comboBox_audio_track);
 
         comboBox_subtitle_track = new QComboBox(frame_controls);
-        comboBox_subtitle_track->setObjectName(QStringLiteral("comboBox_subtitle_track"));
+        comboBox_subtitle_track->setObjectName(QString::fromUtf8("comboBox_subtitle_track"));
         comboBox_subtitle_track->setEnabled(false);
         sizePolicy2.setHeightForWidth(comboBox_subtitle_track->sizePolicy().hasHeightForWidth());
         comboBox_subtitle_track->setSizePolicy(sizePolicy2);
@@ -209,13 +210,13 @@ public:
         horizontalLayout_4->addItem(horizontalSpacer_4);
 
         label_vol = new QLabel(frame_controls);
-        label_vol->setObjectName(QStringLiteral("label_vol"));
+        label_vol->setObjectName(QString::fromUtf8("label_vol"));
         label_vol->setPixmap(QPixmap(QString::fromUtf8(":/MediaPlayer/Resources/speaker_mute.png")));
 
         horizontalLayout_4->addWidget(label_vol);
 
         horizontalSlider_media_volume = new QSlider(frame_controls);
-        horizontalSlider_media_volume->setObjectName(QStringLiteral("horizontalSlider_media_volume"));
+        horizontalSlider_media_volume->setObjectName(QString::fromUtf8("horizontalSlider_media_volume"));
         horizontalSlider_media_volume->setEnabled(false);
         sizePolicy1.setHeightForWidth(horizontalSlider_media_volume->sizePolicy().hasHeightForWidth());
         horizontalSlider_media_volume->setSizePolicy(sizePolicy1);

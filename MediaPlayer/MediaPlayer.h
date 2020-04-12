@@ -22,6 +22,8 @@ public:
 
 	void setFullscreen(bool fullscreen);
 
+	bool play(QString mediaFilePath, QString subtitleFile = QString());
+
 protected:
 	void mouseDoubleClickEvent(QMouseEvent *event);
 
@@ -32,6 +34,7 @@ private:
 	
 	Ui::MediaPlayerClass ui;
 	SecureMediaPlayerLib::MediaFileReader * m_mediaFileReader;
+	QString m_mediaPassword;
 	Qt::WindowFlags m_originalWindowFlags;
 	bool m_mediaInfoParsed;
 	bool m_mediaEndReached;

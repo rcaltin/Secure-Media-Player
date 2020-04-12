@@ -66,6 +66,11 @@ void VLCController::init(MediaFileReader * mediaFileReader, QWidget *videoWidget
 
 	m_vlcMediaPlayer = libvlc_media_player_new_from_media(m_vlcMedia);
 
+	//TODO: consider reactivate for osd menu
+	libvlc_video_set_mouse_input(m_vlcMediaPlayer, 0);
+	libvlc_video_set_key_input(m_vlcMediaPlayer, 0);
+	// ~
+
 #if defined(Q_OS_WIN)
 	libvlc_media_player_set_hwnd(m_vlcMediaPlayer, m_videoWidget ? (void*)m_videoWidget->winId() : nullptr);
 #elif defined(Q_OS_MAC)

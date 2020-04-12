@@ -15,7 +15,7 @@ const QStringList MediaPlayer::sm_supportedSubtitleFiles = {
 };
 
 MediaPlayer::MediaPlayer(QString mediaFilePath, QString mediaPassword, QString subtitleFile, QWidget *parent)
-	: QMainWindow(parent), m_mediaInfoParsed(false), m_mediaEndReached(false), m_mediaFileReader(nullptr)
+	: QMainWindow(parent), m_mediaPassword(mediaPassword), m_mediaInfoParsed(false), m_mediaEndReached(false), m_mediaFileReader(nullptr)
 {
 	ui.setupUi(this);
 
@@ -31,41 +31,8 @@ MediaPlayer::MediaPlayer(QString mediaFilePath, QString mediaPassword, QString s
 	connect(vlc, SIGNAL(mediaPositionChanged(float)), this, SLOT(vlcMediaPositionChanged(float)));
 	connect(vlc, SIGNAL(error(QString)), this, SLOT(vlcError(QString)));
 
-	// load the media file
-	if (!mediaFilePath.isEmpty())
-	{
-		m_mediaFileReader = MediaFileFactory::createMediaFileReader(mediaFilePath);
-
-		if (m_mediaFileReader->isSecureMedia())
-		{
-			QString mediaPW = mediaPassword;
-			if (mediaPW.isEmpty())
-				mediaPW = QInputDialog::getText(this, tr(MEDIA_FILE_EXTENSION), tr("Enter Media Password"), QLineEdit::Password);
-
-			static_cast<EncryptedMediaFileReader*>(m_mediaFileReader)->setMediaPasswordHash(CryptographyManager::SHA3_256(mediaPW));
-		}
-
-		// try open the media file
-		if (!m_mediaFileReader->open())
-		{
-			QMessageBox::critical(this, tr("Error"), tr("Media file couldn't be opened."));
-
-			delete m_mediaFileReader;
-			m_mediaFileReader = nullptr;
-		}
-		else
-		{
-			// init vlc wrapper
-			vlc->init(m_mediaFileReader, ui.frame_video);
-
-			// play on start
-			on_pushButton_media_play_pause_clicked();
-
-			// add subtitle file
-			if (!subtitleFile.isEmpty() && sm_supportedSubtitleFiles.contains(subtitleFile.split('.').takeLast()))
-				vlc->addMediaSubtitleFile(subtitleFile);
-		}
-	}
+	if (!mediaFilePath.isEmpty() && !play(mediaFilePath, subtitleFile))
+		exit(-1);
 }
 
 MediaPlayer::~MediaPlayer()
@@ -90,6 +57,57 @@ void MediaPlayer::setFullscreen(bool fullscreen)
 		this->windowHandle()->setFlags(m_originalWindowFlags);
 		ui.frame_controls->show();
 	}
+}
+
+bool MediaPlayer::play(QString mediaFilePath, QString subtitleFile)
+{
+	if (VLCController::getInstance().isReadyToPlay())
+	{
+		VLCController::getInstance().destroyMedia();
+
+		if (m_mediaFileReader)
+			delete m_mediaFileReader;
+	}
+
+	// load the media file
+	if (!mediaFilePath.isEmpty())
+	{
+		m_mediaFileReader = MediaFileFactory::createMediaFileReader(mediaFilePath);
+		VLCController * vlc = &VLCController::getInstance();
+
+		if (m_mediaFileReader->isSecureMedia())
+		{
+			if (m_mediaPassword.isEmpty())
+				m_mediaPassword = QInputDialog::getText(this, tr(MEDIA_FILE_EXTENSION), tr("Enter Media Password"), QLineEdit::Password);
+
+			static_cast<EncryptedMediaFileReader*>(m_mediaFileReader)->setMediaPasswordHash(CryptographyManager::SHA3_256(m_mediaPassword));
+		}
+
+		// try open the media file
+		if (!m_mediaFileReader->open())
+		{
+			QMessageBox::critical(this, tr("Error"), tr("Media file couldn't be opened."));
+
+			delete m_mediaFileReader;
+			m_mediaFileReader = nullptr;
+
+			return false;
+		}
+		else
+		{
+			// init vlc wrapper
+			vlc->init(m_mediaFileReader, ui.frame_video);
+
+			// play on start
+			on_pushButton_media_play_pause_clicked();
+
+			// add subtitle file
+			if (!subtitleFile.isEmpty() && sm_supportedSubtitleFiles.contains(subtitleFile.split('.').takeLast()))
+				vlc->addMediaSubtitleFile(subtitleFile);
+		}
+	}
+
+	return true;
 }
 
 void MediaPlayer::mouseDoubleClickEvent(QMouseEvent *event)
@@ -156,24 +174,24 @@ bool MediaPlayer::eventFilter(QObject *object, QEvent *ev)
 
 void MediaPlayer::dragEnterEvent(QDragEnterEvent * ev)
 {
-	// accept only supported subtitle files which are defined in sm_supportedSubtitleFiles
-	bool accept = true;
-	if (ev->mimeData()->hasUrls() && VLCController::getInstance().isReadyToPlay())
-	{
-		for each(QUrl url in ev->mimeData()->urls())
-		{
-			QString dir = QDir::toNativeSeparators(url.path());
-			if (!sm_supportedSubtitleFiles.contains(dir.split('.').takeLast()))
-			{
-				accept = false;
-				break;
-			}
-		}
-	}
-	else
-		accept = false;
+	//// accept only supported subtitle files which are defined in sm_supportedSubtitleFiles
+	//bool accept = true;
+	//if (ev->mimeData()->hasUrls() && VLCController::getInstance().isReadyToPlay())
+	//{
+	//	for each(QUrl url in ev->mimeData()->urls())
+	//	{
+	//		QString dir = QDir::toNativeSeparators(url.path());
+	//		if (!sm_supportedSubtitleFiles.contains(dir.split('.').takeLast()))
+	//		{
+	//			accept = false;
+	//			break;
+	//		}
+	//	}
+	//}
+	//else
+	//	accept = false;
 
-	if(accept)
+	//if(accept)
 		ev->acceptProposedAction();
 }
 
@@ -181,13 +199,22 @@ void MediaPlayer::dropEvent(QDropEvent * ev)
 {
 	if (ev->mimeData()->hasUrls())
 	{
-		for each(QUrl url in ev->mimeData()->urls())
+		for(QUrl url : ev->mimeData()->urls())
 		{
-			VLCController::getInstance().addMediaSubtitleFile(QDir::toNativeSeparators(url.path()));
+			if (sm_supportedSubtitleFiles.contains(url.toLocalFile().split('.').takeLast()))
+			{
+				if (VLCController::getInstance().isReadyToPlay())
+				{
+					VLCController::getInstance().addMediaSubtitleFile(url.toLocalFile());
+					m_mediaInfoParsed = false; // force reload subtitles
+				}
+			}
+			else
+			{
+				play(url.toLocalFile());
+			}
 		}
 
-		// force reload subtitles
-		m_mediaInfoParsed = false;
 		ev->acceptProposedAction();
 	}
 }

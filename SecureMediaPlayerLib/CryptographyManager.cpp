@@ -32,7 +32,12 @@ void CryptographyManager::roll_SHA3_256(unsigned char * hash, int rollCount)
 	std::lock_guard<std::mutex> lock(sm_mutex);
 
 	while (rollCount-- > 0)
+	{
 		memcpy(hash, sm_sha(hash, 64).c_str(), 64);
+
+		//TODO swap key
+	}
+		
 }
 
 void CryptographyManager::AES_Encrypt(unsigned char * buffer, const unsigned char * key, const unsigned char * iv, int length, int offset)
